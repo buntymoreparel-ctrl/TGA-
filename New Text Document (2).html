@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>بطاقة التشغيل</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      margin: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #005daa;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      border-top: 1px solid #ddd;
+      padding: 20px 0;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .col {
+      width: 45%;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .value {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .button {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .button button {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>تفاصيل بطاقة التشغيل</h2>
+
+    <!-- بيانات المنشأة -->
+    <div class="section">
+      <h2>بيانات المنشأة / الفرد</h2>
+      <div class="row">
+        <div class="col">
+          <div class="label">الاسم</div>
+          <div class="value">مؤسسة معالم المجال للتشغيل والصيانة</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- معلومات الترخيص -->
+    <div class="section">
+      <h2>معلومات الترخيص الرئيسي</h2>
+      <div class="row">
+        <div class="col">
+          <div class="label">رقم الترخيص</div>
+          <div class="value">38/00018128</div>
+        </div>
+        <div class="col">
+          <div class="label">نوع الترخيص للنشاط</div>
+          <div class="value">نشاط النقل الخفيف للبضائع بأجر (فردي - شاحنات)</div>
+        </div>
+        <div class="col">
+          <div class="label">المدينة</div>
+          <div class="value">محافظة الليث</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- بيانات بطاقة التشغيل -->
+    <div class="section">
+      <h2>بيانات بطاقة التشغيل</h2>
+      <div class="row">
+        <div class="col">
+          <div class="label">رقم البطاقة</div>
+          <div class="value">38-0004654</div>
+        </div>
+        <div class="col">
+          <div class="label">تاريخ الإصدار</div>
+          <div class="value">1443/04/13</div>
+        </div>
+        <div class="col">
+          <div class="label">نوع بطاقة التشغيل</div>
+          <div class="value">نشاط النقل الخفيف للبضائع بأجر (فردي - شاحنات)</div>
+        </div>
+        <div class="col">
+          <div class="label">تاريخ التجديد</div>
+          <div class="value">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- معلومات المركبة -->
+    <div class="section">
+      <h2>معلومات المركبة</h2>
+      <div class="row">
+        <div class="col">
+          <div class="label">نوع السيارة</div>
+          <div class="value">شاحنة / خصوصي</div>
+        </div>
+        <div class="col">
+          <div class="label">الرقم التسلسلي</div>
+          <div class="value">877390220</div>
+        </div>
+        <div class="col">
+          <div class="label">نوع الملكية</div>
+          <div class="value">فردي</div>
+        </div>
+        <div class="col">
+          <div class="label">رقم اللوحة</div>
+          <div class="value">أ ط د 7953</div>
+        </div>
+        <div class="col">
+          <div class="label">سنة الصنع</div>
+          <div class="value">2025</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="button">
+      <button>رجوع</button>
+      <!-- Download PDF button (added) -->
+      <button id="download-pdf-btn">تحميل الصفحة كملف PDF</button>
+    </div>
+  </div>
+
+  <!-- html2pdf.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+  <!-- Download PDF script (keeps original page formatting) -->
+  <script>
+    (function () {
+      var btn = document.getElementById('download-pdf-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var options = {
+          margin: 0.3,
+          filename: 'بطاقة_التشغيل.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        // Export the whole page to preserve your current layout
+        html2pdf().set(options).from(document.body).save();
+      });
+    })();
+  </script>
+</body>
+</html>
